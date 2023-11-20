@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserTypes;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -47,6 +48,11 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
+
+        if ($user->user_type == UserTypes::Admin->value) {
+            // Prevent the deletion of admin accounts
+            return redirect()->back()->withErrors(['error' => 'Admin accounts cannot be deleted.']);
+        }
 
         Auth::logout();
 
