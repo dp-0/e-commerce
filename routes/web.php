@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\VoucherController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,12 @@ Route::middleware('auth')->group(function () {
 
        Route::get('/product',[\App\Http\Controllers\Admin\ProductController::class,'index'])->name('admin.product.index');
        Route::delete('/products', [\App\Http\Controllers\Admin\ProductController::class, 'destroy'])->name('admin.product.destroy');
+
+       Route::get('/voucher',[VoucherController::class, 'index'])->name('admin.voucher.index');
+       Route::get('/voucher/create',[VoucherController::class, 'create'])->name('admin.voucher.create');
+       Route::post('/voucher/create',[VoucherController::class, 'store'])->name('admin.voucher.store');
+       Route::get('/voucher/active/{id}',[VoucherController::class, 'active'])->name('admin.voucher.active');
+       Route::get('/voucher/deactive/{id}',[VoucherController::class, 'deactive'])->name('admin.voucher.deactive');
     });
 });
 
