@@ -29,7 +29,8 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
+        $token = Auth::user()->createToken('dinesh')->plainTextToken;
+        session(['token' => $token]);
         if(Auth::user()->user_type == UserTypes::Admin->value){
             return redirect()->intended(RouteServiceProvider::ADMINHOME);
         }
@@ -41,6 +42,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        Auth::user()->tokens()->delete();
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();

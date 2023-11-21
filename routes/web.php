@@ -27,10 +27,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::middleware(['can:is_admin'])->group(function () {
-       Route::get('/admin/dashboard', function (){
+    Route::prefix('/admin')->middleware(['can:is_admin'])->group(function () {
+       Route::get('/dashboard', function (){
            return view('admin.dashboard');
        })->name('admin.dashboard');
+
+       Route::get('/product',[\App\Http\Controllers\Admin\ProductController::class,'index'])->name('admin.product.index');
+       Route::delete('/products', [\App\Http\Controllers\Admin\ProductController::class, 'destroy'])->name('admin.product.destroy');
     });
 });
 
