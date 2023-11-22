@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\admin\VoucherController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -41,7 +42,13 @@ Route::middleware('auth')->group(function () {
        Route::post('/voucher/create',[VoucherController::class, 'store'])->name('admin.voucher.store');
        Route::get('/voucher/active/{id}',[VoucherController::class, 'active'])->name('admin.voucher.active');
        Route::get('/voucher/deactive/{id}',[VoucherController::class, 'deactive'])->name('admin.voucher.deactive');
-    });
+
+       Route::get('/offers',[OfferController::class, 'index'])->name('admin.offer.index');
+       Route::get('/offer/create',[OfferController::class, 'create'])->name('admin.offer.create');
+       Route::post('/offer/create',[OfferController::class, 'store'])->name('admin.offer.store');
+       Route::get('offer/expired/{id}',[OfferController::class, 'expired'])->name('admin.offer.expired');
+       Route::get('offer/active/{id}',[OfferController::class, 'active'])->name('admin.offer.active');
+    }); 
 });
 
 require __DIR__.'/auth.php';
