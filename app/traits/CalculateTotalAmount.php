@@ -18,6 +18,7 @@ trait CalculateTotalAmount
            foreach ($cart as $id => $details){
                $product_price = $details['price'];
                if ($offer) {
+                    session()->put('offer_id',$offer->id);
                    $product_price = $details['price'] - ($details['price'] * $offer->offer_percentange / 100);
                }
                $total +=  $product_price * $details['quantity'];
