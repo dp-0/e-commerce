@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\admin\VoucherController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\KhaltiPaymentController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +36,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::get('/procced/payment',[KhaltiPaymentController::class,'proceddToPayment'])->name('procced.to.payment');
+    Route::get('/verify/payment',[KhaltiPaymentController::class,'verifyPayment'])->name('verify.to.payment');
+    Route::get('/user/order',[OrderController::class, 'index'])->name('user.orders');
     Route::prefix('/admin')->middleware(['can:is_admin'])->group(function () {
        Route::get('/dashboard', function (){
            return view('admin.dashboard');

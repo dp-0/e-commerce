@@ -144,7 +144,7 @@
                                 </a>
                             </div>
                             <div class="flex items-center justify-between ">
-                                <button class="block w-full py-4 font-bold text-center text-gray-100 uppercase bg-blue-500 rounded-md hover:bg-blue-600">Checkout</button>
+                                <a href="{{route('procced.to.payment')}}"  class="block w-full py-4 font-bold text-center text-gray-100 uppercase bg-blue-500 rounded-md hover:bg-blue-600">Checkout</a>
                             </div>
                         </div>
                     </div>
