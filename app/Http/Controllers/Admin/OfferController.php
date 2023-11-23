@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class OfferController extends Controller
 {
     public function index(){
-        $offers =  Offers::paginate(10);
+        $offers =  Offers::orderBy('created_at','desc')->paginate(10);
         return view('admin.offer', compact('offers'));
     }
 
