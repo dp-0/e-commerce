@@ -83,7 +83,7 @@ class KhaltiPaymentController extends Controller
         $cart = session()->get('cart');
         $voucher = session()->get('voucher');
         if($voucher){
-            $voucher = Voucher::find($voucher['code'])->first();
+            $voucher = Voucher::where('code','=',$voucher['code'])->first();
             $voucher = $voucher->id;
         }
         $offer = null;
