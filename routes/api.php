@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\ProductController as ControllersProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,4 @@ Route::prefix('admin')->middleware(['auth:sanctum','can:is_admin'])->group(funct
 });
 
 
+Route::get('/product',[ControllersProductController::class, 'getProduct']);
