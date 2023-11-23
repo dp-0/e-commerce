@@ -20,5 +20,7 @@ class DatabaseSeeder extends Seeder
              'email' => 'admin@gmail.com',
              'user_type' => UserTypes::Admin
          ]);
+
+         \App\Models\Product::factory(1000)->create();
     }
 }

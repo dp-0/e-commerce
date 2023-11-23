@@ -35,12 +35,12 @@
                             </div>
                         </div>
                         <div class="py-4 mb-8 border-t border-b border-gray-200 dark:border-gray-700">
-                           
+
                             @if(session('cart'))
                             @php
 
                             $cart = session('cart');
-                      
+
                             $total = 0;
                             $voucher = session('voucher');
                             @endphp
@@ -112,7 +112,7 @@
                             <input name="code" value="@if(session()->get('cart')) @if($voucher) {{$voucher['code']}} @endif @endif" type="text"  class="flex-1 px-8 py-4 font-normal placeholder-gray-300 border dark:border-gray-700 dark:placeholder-gray-500 md:flex-none md:mr-6 dark:text-gray-400 dark:bg-gray-800" placeholder="x304k45">
                             <button type="submit" class="flex-1 inline-block px-8 py-4 font-bold text-center text-gray-100 bg-blue-500 rounded-md hover:bg-blue-600 md:flex-none">Apply</button>
                             </form>
-                           
+
                         </div>
                     </div>
 
@@ -144,7 +144,7 @@
                                 </a>
                             </div>
                             <div class="flex items-center justify-between ">
-                                <a href="{{route('procced.to.payment')}}"  class="block w-full py-4 font-bold text-center text-gray-100 uppercase bg-blue-500 rounded-md hover:bg-blue-600">Checkout</a>
+                                <a href="{{route('proceed.to.payment')}}"  class="block w-full py-4 font-bold text-center text-gray-100 uppercase bg-blue-500 rounded-md hover:bg-blue-600">Checkout</a>
                             </div>
                         </div>
                     </div>

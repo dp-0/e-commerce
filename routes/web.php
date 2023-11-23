@@ -36,9 +36,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/procced/payment',[KhaltiPaymentController::class,'proceddToPayment'])->name('procced.to.payment');
+    Route::get('/procced/payment',[KhaltiPaymentController::class,'proceddToPayment'])->name('proceed.to.payment');
     Route::get('/verify/payment',[KhaltiPaymentController::class,'verifyPayment'])->name('verify.to.payment');
     Route::get('/user/order',[OrderController::class, 'index'])->name('user.orders');
+    Route::get('/user/order/product/{id}',[OrderController::class, 'product'])->name('user.order.product');
+    Route::get('/user/order/product/view/{id}',[OrderController::class,'viewProduct'])->name('user.order.product.view');
     Route::prefix('/admin')->middleware(['can:is_admin'])->group(function () {
        Route::get('/dashboard', function (){
            return view('admin.dashboard');
@@ -58,7 +60,7 @@ Route::middleware('auth')->group(function () {
        Route::post('/offer/create',[OfferController::class, 'store'])->name('admin.offer.store');
        Route::get('offer/expired/{id}',[OfferController::class, 'expired'])->name('admin.offer.expired');
        Route::get('offer/active/{id}',[OfferController::class, 'active'])->name('admin.offer.active');
-    }); 
+    });
 });
 
 require __DIR__.'/auth.php';

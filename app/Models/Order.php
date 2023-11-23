@@ -18,6 +18,9 @@ class Order extends Model
         'user_id'
     ];
 
+    protected $casts = [
+        'purchase_date_time' => 'datetime'
+    ];
     public function products()
     {
         return $this->belongsToMany(Product::class)->withPivot('amount');

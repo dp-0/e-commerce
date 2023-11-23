@@ -18,4 +18,9 @@ class Product extends Model
         'description',
         'status'
     ];
+
+    public function order()
+    {
+        return $this->belongsToMany(Order::class)->withPivot('amount');
+    }
 }
