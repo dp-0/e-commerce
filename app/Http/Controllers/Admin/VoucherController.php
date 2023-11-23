@@ -14,7 +14,7 @@ class VoucherController extends Controller
         if(session('status')){
             dd(session('status'));
         }
-        $vouchers = Voucher::paginate(10);
+        $vouchers = Voucher::orderBy('created_at','desc')->paginate(10);
         return view('admin.voucher', compact('vouchers'));
     }
     public function create(){

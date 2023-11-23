@@ -54,10 +54,11 @@
                                     {{strtoupper($voucher->status)}}
                                 </td>
                                 <td>
-                                    @if($voucher->status == 'deactivated')
-                                    <a href="{{route('admin.voucher.active',$voucher->id)}}" type="button" class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-full text-sm px-3 py-1 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-blue-800">Active</a>
+
+                                    @if($voucher->status == 'deactivated' && $voucher->valid_up_to->diffInDays(now()) >= 0)
+                                    <a href="{{route('admin.voucher.active',$voucher->id)}}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-full text-sm px-3 py-1 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Activate</a>
                                     @else
-                                    <a href="{{route('admin.voucher.deactive',$voucher->id)}}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-full text-sm px-3 py-1 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Deactive</a>
+                                    <a href="{{route('admin.voucher.deactive',$voucher->id)}}" type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-blue-300 rounded-full text-sm px-3 py-1 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-blue-800">Deactive</a>
                                     @endif
                                 </td>
                             </tr>
