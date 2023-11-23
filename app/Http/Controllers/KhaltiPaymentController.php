@@ -15,7 +15,10 @@ class KhaltiPaymentController extends Controller
     use CalculateTotalAmount;
     public function proceddToPayment(Request $request)
     {
-        $user = Auth::user();
+        $cart = session()->get('cart');
+        if(!$cart){
+            return redirect()->back()->with('error', "Your Cart is Empty");
+        }
         $purchaseOrderId = Str::random(10);
         $amount = $this->getTotalOrderAmountAfterVoucherApply() * 100;
         $amount = floor($amount);
@@ -50,7 +53,6 @@ class KhaltiPaymentController extends Controller
     }
     public function verifyPayment(Request $request)
     {
-      
         $purchaseOrderId = $request->purchase_order_id;
         $curl = curl_init();
         curl_setopt_array($curl, array(
